@@ -68,6 +68,29 @@
     width: 100%;
   }
 
+  /* Sección Nosotros */
+  #nosotros {
+    padding: 2rem 1rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    color: var(--offwhite);
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+  }
+
+  #nosotros h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+  }
+
+  #nosotros p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
   header {
     flex-grow: 1;
     display: flex;
@@ -137,6 +160,12 @@
       border-bottom: 1px solid #2a2a2a;
     }
 
+    #nosotros {
+      padding: 1.5rem 1rem;
+      max-width: 90vw;
+      margin: 2rem auto;
+    }
+
     header {
       padding: 3rem 1rem 4rem;
     }
@@ -167,10 +196,24 @@
 <body>
   <nav>
     <a href="#">Inicio</a>
+    <a href="#nosotros">Nosotros</a>
     <a href="#">Tienda</a>
-    <a href="#">Nosotros</a>
     <a href="#">Contacto</a>
   </nav>
+
+  <section id="nosotros">
+    <h2>Nosotros</h2>
+    <p>
+      En <strong>Elementals</strong> creemos que el lujo está en los detalles y en la esencia de cada producto. Nuestra misión es ofrecer artículos exclusivos que reflejen elegancia, sofisticación y calidad excepcional.
+    </p>
+    <p>
+      Fundada por un equipo apasionado por el diseño y la exclusividad, cada pieza que ofrecemos ha sido cuidadosamente seleccionada para brindar una experiencia única y auténtica a nuestros clientes.
+    </p>
+    <p>
+      Nos comprometemos a proporcionar un servicio personalizado y productos que inspiren confianza, belleza y lujo atemporal.
+    </p>
+  </section>
+
   <header>
     <h1>Elementals</h1>
     <p>La tienda de productos exclusivos con esencia de lujo y elegancia.</p>
@@ -185,4 +228,5 @@
 </script>
 </body>
 </html>
+
 
