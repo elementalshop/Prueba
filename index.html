@@ -54,6 +54,7 @@
     position: relative;
     padding-bottom: 4px;
     transition: color 0.3s ease;
+    cursor: pointer;
   }
 
   nav a:hover,
@@ -85,7 +86,7 @@
     align-items: center;
     text-align: center;
     padding: 4rem 1rem;
-    height: 100vh; /* Hace que el header ocupe toda la pantalla */
+    height: 100vh; /* Ocupa toda la pantalla */
   }
 
   header h1 {
@@ -128,15 +129,25 @@
     outline: none;
   }
 
-  /* Sección Nosotros está después, no visible al inicio */
+  /* Sección Nosotros oculta inicialmente */
   #nosotros {
-    padding: 2rem 1rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.6s ease, opacity 0.6s ease;
+    padding: 0 1rem;
     max-width: 600px;
-    margin: 4rem auto 4rem; /* espacio arriba para que no quede pegado */
+    margin: 0 auto 4rem;
     color: var(--offwhite);
     font-family: 'Montserrat', sans-serif;
     text-align: center;
   }
+  #nosotros.visible {
+    max-height: 1000px; /* suficiente para mostrar contenido */
+    opacity: 1;
+    padding-top: 2rem;
+  }
+
   #nosotros h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
@@ -187,7 +198,7 @@
 
     #nosotros {
       max-width: 90vw;
-      margin: 4rem auto 4rem;
+      margin: 0 auto 4rem;
     }
     #nosotros h2 {
       font-size: 2rem;
@@ -197,8 +208,8 @@
 </head>
 <body>
   <nav>
-    <a href="#">Inicio</a>
-    <a href="#nosotros">Nosotros</a>
+    <a href="#" id="linkInicio">Inicio</a>
+    <a href="#nosotros" id="linkNosotros">Nosotros</a>
     <a href="#">Tienda</a>
     <a href="#">Contacto</a>
   </nav>
@@ -219,9 +230,35 @@
   function shopNow() {
     alert('¡Gracias por tu interés! La tienda estará disponible pronto.');
   }
+
+  const nosotros = document.getElementById('nosotros');
+  const linkNosotros = document.getElementById('linkNosotros');
+  const linkInicio = document.getElementById('linkInicio');
+
+  // Mostrar la sección Nosotros al hacer scroll hacia abajo (más de 10px)
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 10) {
+      nosotros.classList.add('visible');
+    } else {
+      nosotros.classList.remove('visible');
+    }
+  });
+
+  // Al hacer click en el enlace "Nosotros", mostrar la sección y hacer scroll suave
+  linkNosotros.addEventListener('click', (e) => {
+    e.preventDefault();
+    nosotros.classList.add('visible');
+    nosotros.scrollIntoView({behavior: 'smooth'});
+  });
+
+  // Al hacer click en "Inicio", hacer scroll al inicio y ocultar la sección
+  linkInicio.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    nosotros.classList.remove('visible');
+  });
 </script>
 </body>
 </html>
-
 
 
