@@ -19,6 +19,10 @@
     box-sizing: border-box;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--black);
     color: var(--offwhite);
@@ -118,48 +122,64 @@
     outline: none;
   }
 
-  /* Media query mejorada para móviles */
+  /* Sección Nosotros */
+  #nosotros {
+    padding: 2rem 1rem;
+    max-width: 600px;
+    margin: 2rem auto 4rem;
+    color: var(--offwhite);
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+  }
+  #nosotros h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+  }
+  #nosotros p {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: #c9c4bb;
+  }
+
   @media (max-width: 600px) {
     nav {
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1rem;
       padding: 15px 0;
-      font-size: 1.1rem;
+      font-size: 1rem;
       border-bottom: none;
       align-items: center;
-      background-color: var(--black);
     }
     nav a {
-      font-size: 1.3rem;
-      padding: 8px 0;
-      width: 100%;
-      text-align: center;
-      border-bottom: 1px solid #2a2a2a;
+      font-size: 1.2rem;
+      padding-bottom: 6px;
     }
 
-    header {
-      padding: 3rem 1rem 4rem;
-    }
     header h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      padding: 0 1rem;
+      font-size: 3.5rem;
+      margin-bottom: 0.75rem;
     }
     header p {
       font-size: 1.1rem;
       max-width: 90vw;
-      margin: 0 auto 2.5rem;
-      padding: 0 1rem;
-      line-height: 1.5;
+      margin-bottom: 2rem;
     }
     button {
       width: 90vw;
-      padding: 1.2rem;
-      font-size: 1.3rem;
-      border-radius: 8px;
+      padding: 1rem;
+      font-size: 1.2rem;
+      border-radius: 6px;
       letter-spacing: 0.1em;
-      margin: 0 auto;
-      display: block;
+    }
+
+    #nosotros {
+      max-width: 90vw;
+      margin: 2rem auto 4rem;
+    }
+    #nosotros h2 {
+      font-size: 2rem;
     }
   }
 </style>
@@ -167,8 +187,8 @@
 <body>
   <nav>
     <a href="#">Inicio</a>
+    <a href="#nosotros">Nosotros</a>
     <a href="#">Tienda</a>
-    <a href="#">Nosotros</a>
     <a href="#">Contacto</a>
   </nav>
   <header>
@@ -177,10 +197,16 @@
     <button onclick="shopNow()">Comprar ahora</button>
   </header>
 
+  <section id="nosotros">
+    <h2>Nosotros</h2>
+    <p>En <strong>Elementals</strong> creemos que el lujo está en los detalles y en la esencia de cada producto. Nuestra misión es ofrecer artículos exclusivos que reflejen elegancia, sofisticación y calidad excepcional.</p>
+    <p>Fundada por un equipo apasionado por el diseño y la exclusividad, cada pieza que ofrecemos ha sido cuidadosamente seleccionada para brindar una experiencia única y auténtica a nuestros clientes.</p>
+    <p>Nos comprometemos a proporcionar un servicio personalizado y productos que inspiren confianza, belleza y lujo atemporal.</p>
+  </section>
+
 <script>
   function shopNow() {
     alert('¡Gracias por tu interés! La tienda estará disponible pronto.');
-    // Aquí se puede agregar redirección o abrir la tienda cuando esté lista.
   }
 </script>
 </body>
