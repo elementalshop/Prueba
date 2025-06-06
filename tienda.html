@@ -1,50 +1,269 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tienda - Elementals</title>
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #0a0a0a;
-      color: #f6f1eb;
-      margin: 0;
-      padding: 2rem;
-      text-align: center;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Elementals Store</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
+    color: #374151; /* Neutral gray */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Sticky Navbar */
+  nav {
+    position: sticky;
+    top: 0;
+    background-color: #000000; /* Black background */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #bf9b30; /* Gold color */
+    letter-spacing: 0.05em;
+    user-select: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .nav-links a {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #bf9b30; /* Gold color */
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
+  }
+  .nav-links a:focus-visible,
+  .nav-links a:hover {
+    color: #f5dfa0; /* lighter gold on hover */
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #bf9b30;
+    transition: width 0.3s ease;
+    border-radius: 1px;
+  }
+  .nav-links a:focus-visible::after,
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  /* CTA button in nav */
+  .btn-primary {
+    background-color: #bf9b30; /* Gold background */
+    color: #000000; /* Black text */
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #f5dfa0; /* lighter gold on hover */
+    color: #111111;
+    outline: none;
+  }
+
+  /* Hamburger menu - hidden on desktop */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+  .hamburger span {
+    width: 24px;
+    height: 3px;
+    background-color: #bf9b30;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+  }
+  .hamburger:focus-visible {
+    outline: 2px solid #bf9b30;
+    outline-offset: 2px;
+  }
+
+  /* Mobile nav panel */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #000000;
+  }
+  .mobile-menu a {
+    padding: 1rem 2rem;
+    border-top: 1px solid #442f00;
+    color: #bf9b30;
+    font-weight: 600;
+  }
+  .mobile-menu a:hover,
+  .mobile-menu a:focus {
+    color: #f5dfa0;
+    background-color: #332a00;
+  }
+  .mobile-menu .btn-primary {
+    margin: 1rem 1.5rem;
+    background-color: #bf9b30;
+    color: #000000;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+  }
+  .mobile-menu .btn-primary:hover,
+  .mobile-menu .btn-primary:focus {
+    background-color: #f5dfa0;
+    color: #111111;
+    outline: none;
+  }
+
+  /* Hero section */
+  header.hero {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    text-align: center;
+    background: #fff;
+  }
+  header.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  header.hero p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.5rem;
+  }
+  header.hero .btn-primary-large {
+    font-size: 1.25rem;
+    padding: 0.75rem 2.5rem;
+    border-radius: 9999px;
+  }
+
+  /* Responsive */
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
     }
-    h1 {
-      color: #bfa15e;
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .hamburger {
+      display: flex;
     }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #ccc;
+    .mobile-menu.show {
+      display: flex;
     }
-    .volver {
-      display: inline-block;
-      padding: 1rem 2rem;
-      border: 2px solid #bfa15e;
-      color: #bfa15e;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
+    header.hero h1 {
+      font-size: 2rem;
+      padding: 0 1rem;
     }
-    .volver:hover {
-      background-color: #bfa15e;
-      color: #0a0a0a;
+    header.hero p {
+      font-size: 1rem;
+      padding: 0 1rem;
     }
-  </style>
+    header.hero .btn-primary-large {
+      width: 90%;
+      max-width: 320px;
+    }
+  }
+</style>
 </head>
 <body>
-  <h1>Nuestra Tienda</h1>
-  <p>Aquí encontrarás todos los productos exclusivos de Elementals.</p>
+<nav>
+  <div class="logo">Elementals</div>
+  <div class="nav-links" role="menubar" aria-label="Main navigation menu">
+    <a href="#" role="menuitem" tabindex="0">Inicio</a>
+    <a href="#" role="menuitem" tabindex="0">Productos</a>
+    <a href="#" role="menuitem" tabindex="0">Nosotros</a>
+    <a href="#" role="menuitem" tabindex="0">Contacto</a>
+    <button class="btn-primary" type="button" onclick="exploreProducts()">Explorar productos</button>
+  </div>
+  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" id="hamburger-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
 
-  <!-- Aquí puedes ir agregando productos más adelante -->
+<div class="mobile-menu" id="mobile-menu" role="menu" aria-label="Menú móvil">
+  <a href="#" role="menuitem" tabindex="0">Inicio</a>
+  <a href="#" role="menuitem" tabindex="0">Productos</a>
+  <a href="#" role="menuitem" tabindex="0">Nosotros</a>
+  <a href="#" role="menuitem" tabindex="0">Contacto</a>
+  <button class="btn-primary" type="button" onclick="exploreProducts()">Explorar productos</button>
+</div>
 
-  <a href="index.html" class="volver">← Volver al inicio</a>
+<header class="hero">
+  <h1>Descubre la magia de Elementals</h1>
+  <p>Tu tienda online con productos únicos y exclusivos que elevan tu estilo y experiencia.</p>
+  <button class="btn-primary btn-primary-large" onclick="exploreProducts()">Explorar productos</button>
+</header>
+
+<script>
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', String(!expanded));
+    mobileMenu.classList.toggle('show');
+  });
+
+  function exploreProducts() {
+    alert('Próximamente podrás explorar nuestros productos.');
+    // Here you can add redirection to the store page if exists
+    // window.location.href = 'productos.html';
+  }
+</script>
 </body>
 </html>
 
